@@ -1419,7 +1419,7 @@ Expected: Validation report showing matches/discrepancies
 
 ## TODOs (Deferred Work)
 
-1. `doc-classifier/scripts/classify.py` + `dl-extractor/scripts/extract_dl.py` — Add try-except for OpenAI API and JSON parsing errors. Address both together for consistency.
+1. ~~`doc-classifier/scripts/classify.py` + `dl-extractor/scripts/extract_dl.py` — Add try-except for OpenAI API and JSON parsing errors.~~ Done (PR #2).
 2. `tests/test_extract_dl_integration.py` — Add test with a manually rotated DL image (portrait orientation) to verify auto_rotate corrects it before extraction.
 
 ## Unresolved Questions
