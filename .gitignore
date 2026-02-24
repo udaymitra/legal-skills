@@ -7,7 +7,7 @@ build/
 
 # Environment
 .env
-.env.*
+!.env.example
 
 # IDE
 .vscode/
@@ -17,6 +17,9 @@ build/
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Test data (personal documents)
+test_data/
 
 # OS
 .DS_Store

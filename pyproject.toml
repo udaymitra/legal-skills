@@ -5,3 +5,6 @@ requires-python = ">=3.11"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+markers = [
+    "integration: tests that call real external APIs (deselect with '-m not integration')",
+]
