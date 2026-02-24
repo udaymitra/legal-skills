@@ -18,7 +18,7 @@ load_dotenv()
 
 def classify_document(file_path: str) -> ClassificationResult:
     """Classify a document image as driver_license, insurance, or unknown."""
-    base64_image = file_to_base64_image(file_path)
+    base64_image = file_to_base64_image(file_path, auto_rotate=True)
     client = OpenAI()
 
     response = client.chat.completions.create(
@@ -29,7 +29,11 @@ def classify_document(file_path: str) -> ClassificationResult:
                 "content": (
                     "You are a document classifier. Examine the image and determine "
                     "if it is a Driver License or an Insurance document. "
-                    'Respond with JSON: {"document_type": "driver_license" | "insurance" | "unknown", "confidence": 0.0-1.0}'
+                    'Respond with JSON: {"document_type": "driver_license" | "insurance" | "unknown", "confidence": 0.0-1.0}. '
+                    "IMPORTANT: If the document is not clearly a Driver License or Insurance document, "
+                    'return "unknown". The confidence score reflects how certain you are about your classification — '
+                    "use high confidence when you are sure (even if the type is unknown), "
+                    "low confidence when you are uncertain. Do NOT guess or force a classification."
                 ),
             },
             {

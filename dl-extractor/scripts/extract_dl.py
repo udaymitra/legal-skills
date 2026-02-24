@@ -18,13 +18,15 @@ EXTRACTION_PROMPT = (
     "Return JSON with these exact keys: "
     "first_name, last_name, license_number, address, state, date_of_birth (YYYY-MM-DD or null), "
     "expiration_date (YYYY-MM-DD or null). "
-    "If a field is not visible, use null."
+    "IMPORTANT: Only extract values that are clearly visible in the document. "
+    "If a field is not visible, partially obscured, or you are not confident in the value, use null. "
+    "Do NOT guess or fabricate any values. Accuracy is more important than completeness."
 )
 
 
 def extract_dl(file_path: str) -> DriverLicenseData:
     """Extract structured data from a driver license image."""
-    base64_image = file_to_base64_image(file_path)
+    base64_image = file_to_base64_image(file_path, auto_rotate=True)
     client = OpenAI()
 
     response = client.chat.completions.create(
