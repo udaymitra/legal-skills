@@ -22,7 +22,8 @@
 - [x] **Task 1:** Project Setup — CLAUDE.md, deps, shared models, tests (5 passing)
 - [x] **Task 1b:** Git init, .gitignore, initial commit, push to GitHub
 - [x] **Task 2:** Skill 1 — doc-classifier (SKILL.md, classify.py, 4 unit + 7 integration tests)
-- [ ] **Task 3:** Skill 2 — dl-extractor (SKILL.md, extract_dl.py, tests)
+- [x] **Task 2b:** Fix SKILL.md to follow Anthropic best practices (third-person desc, imperative body)
+- [ ] **Task 3:** Skill 2 — dl-extractor (SKILL.md, extract_dl.py, tests) ← **NEXT**
 - [ ] **Task 4:** Skill 3 — insurance-extractor (SKILL.md, extract_insurance.py, tests)
 - [ ] **Task 5:** Skill 4 — doc-validator (SKILL.md, validate.py, tests)
 - [ ] **Task 6:** Validate all skills, full test suite, package skills
@@ -1414,4 +1415,15 @@ Expected: Validation report showing matches/discrepancies
 
 1. No unit test for `image_utils.py` yet — requires mocking pdf2image/PIL. Add in Task 6?
 2. Task 6 originally included git init steps — already done in Task 1b. Task 6 should focus on validation/packaging only.
-3. `.env.example` — create in Task 6 or earlier?
+3. ~~`.env.example` — create in Task 6 or earlier?~~ Done in Task 2.
+
+## Session Notes
+
+**Session 1 (2026-02-23):** Completed Tasks 1–2. Key decisions:
+- Conda env `legal_skills` must be activated — all commands use `conda run -n legal_skills`
+- `pyyaml` needed for skill-creator's `quick_validate.py` (installed in env)
+- SKILL.md files must follow Anthropic best practices: third-person description, imperative body, both CLI and module import examples. Corrected templates for remaining 3 skills saved at `tmp/skill-templates.md`
+- Integration tests use `@pytest.mark.integration` marker; run unit tests with `-m "not integration"`
+- Test data in `test_data/` (7 docs: 3 DL, 3 insurance, 1 visiting card) — gitignored
+- Pre-commit review process: automated checks → diff review → structured code review → user approval → commit
+- User prefers task-by-task review cadence — complete one task, show report, get approval before committing
