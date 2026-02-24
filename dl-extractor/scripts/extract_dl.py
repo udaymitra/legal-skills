@@ -46,7 +46,7 @@ def extract_dl(file_path: str) -> DriverLicenseData:
         max_tokens=300,
     )
 
-    # TODO: Add try-except for OpenAI API and JSON parsing errors
+    # TODO(auto-fix-ok): Add try-except for OpenAI API and JSON parsing errors
     result = json.loads(response.choices[0].message.content)
     return DriverLicenseData(file_path=file_path, **result)
 

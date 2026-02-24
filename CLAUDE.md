@@ -177,3 +177,37 @@ For each issue: describe concretely, present options, recommend one, ask user be
 
 ### Step 4: Commit
 Only after user approves the review.
+
+### Small TODO Auto-Fix (exception to Step 3–4)
+
+For TODOs tagged as `# TODO(auto-fix-ok):` in code, a background agent may autonomously:
+1. Create a branch (`fix/<short-description>`) from `main`
+2. Implement the fix
+3. Run all automated checks (Step 1: pytest, ruff, mypy)
+4. Run diff review (Step 2) — no debug code, no unrelated changes
+5. Commit, push, and open a PR via `gh pr create`
+
+**User approval is NOT required before committing** — the PR itself serves as the review checkpoint. This exception applies ONLY to `# TODO(auto-fix-ok):` items. Regular TODOs (`# TODO:`) still require the full review process.
+
+**PR description must include a review report** with these sections:
+```
+## Summary
+<What the TODO was and how it was fixed>
+
+## Pre-Commit Review Results
+### Automated Checks
+- pytest: <PASS/FAIL> (<N> tests passed)
+- ruff: <PASS/FAIL>
+- mypy: <PASS/FAIL>
+
+### Diff Review
+- Files changed: <list>
+- No debug code / no secrets / no unrelated changes: <YES/NO>
+
+### Code Review (abbreviated)
+<1 sentence per section: architecture, code quality, tests, performance>
+
+## Test plan
+- [ ] Review diff in PR
+- [ ] Merge if checks pass
+```
