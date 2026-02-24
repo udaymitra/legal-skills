@@ -74,3 +74,6 @@ Poor image quality or obscured text may prevent extraction. Try with a clearer s
 
 **"OpenAI API key not set" error**
 Set the `OPENAI_API_KEY` environment variable or add it to a `.env` file in the project root.
+
+**Required packages**
+This skill requires: `openai`, `pydantic>=2.0`, `python-dotenv`, `pdf2image`, `Pillow`. The system package `poppler` is also required for PDF support. Install with: `pip install openai pydantic python-dotenv pdf2image Pillow`.

@@ -81,3 +81,6 @@ If either document has a null date_of_birth, the comparison is skipped and `dob_
 
 **Name mismatch for same person**
 Name comparison is case-insensitive but exact. Nicknames (e.g., "John" vs "Jonathan") will be flagged as a discrepancy.
+
+**Required packages**
+This skill requires: `pydantic>=2.0`. Install with: `pip install pydantic`.
