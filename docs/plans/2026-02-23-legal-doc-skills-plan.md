@@ -30,7 +30,7 @@
 - [x] **Task 2:** Skill 1 — doc-classifier (SKILL.md, classify.py, 4 unit + 7 integration tests)
 - [x] **Task 2b:** Fix SKILL.md to follow Anthropic best practices (third-person desc, imperative body)
 - [x] **Task 3:** Skill 2 — dl-extractor (SKILL.md, extract_dl.py, 3 unit tests)
-- [ ] **Task 4:** Skill 3 — insurance-extractor (SKILL.md, extract_insurance.py, tests)
+- [x] **Task 4:** Skill 3 — insurance-extractor (SKILL.md, extract_insurance.py, 3 unit tests)
 - [ ] **Task 5:** Skill 4 — doc-validator (SKILL.md, validate.py, tests)
 - [ ] **Task 6:** Validate all skills, full test suite, package skills
 - [ ] **Task 7:** Manual integration test with real docs
