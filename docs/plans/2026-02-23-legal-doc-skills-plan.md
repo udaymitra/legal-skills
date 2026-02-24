@@ -15,6 +15,12 @@
 - `PACKAGE_SKILL=/Users/uday/.claude/plugins/marketplaces/anthropic-agent-skills/skills/skill-creator/scripts/package_skill.py`
 - `VALIDATE_SKILL=/Users/uday/.claude/plugins/marketplaces/anthropic-agent-skills/skills/skill-creator/scripts/quick_validate.py`
 
+**SKILL.md template (REQUIRED):** All SKILL.md files MUST follow the approved templates in `docs/plans/skill-templates.md`. This is a core requirement — every skill's SKILL.md must match the template structure:
+- YAML frontmatter: `name` + `description` (third-person, with specific trigger phrases)
+- Body sections: `## Workflow` (Step 1: Prepare, Step 2: Run, Step 3: Handle results) → `## Examples` → `## Troubleshooting`
+- Imperative voice in body, both CLI and module import examples in Step 2
+- Required vs optional fields documented in Step 3
+
 ---
 
 ## Progress Tracker
@@ -23,7 +29,7 @@
 - [x] **Task 1b:** Git init, .gitignore, initial commit, push to GitHub
 - [x] **Task 2:** Skill 1 — doc-classifier (SKILL.md, classify.py, 4 unit + 7 integration tests)
 - [x] **Task 2b:** Fix SKILL.md to follow Anthropic best practices (third-person desc, imperative body)
-- [ ] **Task 3:** Skill 2 — dl-extractor (SKILL.md, extract_dl.py, tests) ← **NEXT**
+- [x] **Task 3:** Skill 2 — dl-extractor (SKILL.md, extract_dl.py, 3 unit tests)
 - [ ] **Task 4:** Skill 3 — insurance-extractor (SKILL.md, extract_insurance.py, tests)
 - [ ] **Task 5:** Skill 4 — doc-validator (SKILL.md, validate.py, tests)
 - [ ] **Task 6:** Validate all skills, full test suite, package skills
@@ -1410,6 +1416,10 @@ Expected: Validation report showing matches/discrepancies
 > "Build a web app that uses the skills in this project to process uploaded documents. See docs/plans/2026-02-23-legal-doc-skills-design.md for the full design."
 
 ---
+
+## TODOs (Deferred Work)
+
+1. `doc-classifier/scripts/classify.py` + `dl-extractor/scripts/extract_dl.py` — Add try-except for OpenAI API and JSON parsing errors. Address both together for consistency.
 
 ## Unresolved Questions
 

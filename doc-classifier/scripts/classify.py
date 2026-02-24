@@ -52,6 +52,7 @@ def classify_document(file_path: str) -> ClassificationResult:
         max_tokens=100,
     )
 
+    # TODO: Add try-except for OpenAI API and JSON parsing errors
     result = json.loads(response.choices[0].message.content)
     return ClassificationResult(
         file_path=file_path,

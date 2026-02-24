@@ -154,7 +154,16 @@ Run these first. Do not proceed if any fail:
 - Run `git diff` and `git status` — verify every changed line is intentional
 - No debug code, no unrelated changes, no secrets
 - Plan alignment: confirm changes match the spec, update checkboxes
-- TODO tracking: known gaps marked with `# TODO:` comments
+- TODO tracking: when taking a shortcut or deferring work, add `# TODO:` in the code file AND a corresponding entry in the active plan file (if one exists). Both locations must be updated — never one without the other.
+
+### Step 2b: SKILL.md Template Compliance (when adding/modifying a skill)
+If the commit includes a new or modified SKILL.md, verify it matches the approved template in `docs/plans/skill-templates.md`:
+- [ ] YAML frontmatter has `name` and `description` (third-person, with trigger phrases)
+- [ ] Body follows: `## Workflow` (Step 1: Prepare, Step 2: Run, Step 3: Handle results) → `## Examples` → `## Troubleshooting`
+- [ ] Imperative voice in body instructions
+- [ ] Both CLI (`python <skill>/scripts/<script>.py <args>`) and module import examples in Step 2
+- [ ] Step 3 documents required vs optional fields
+- [ ] Troubleshooting covers: unsupported file type, missing fields, API key errors (as applicable)
 
 ### Step 3: Structured Code Review
 Walk through all 4 sections. For SMALL changes: 1 top issue per section. For BIG changes: up to 4 per section.
