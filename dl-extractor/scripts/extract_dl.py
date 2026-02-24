@@ -3,7 +3,9 @@ import json
 import sys
 from pathlib import Path
 
+import openai
 from openai import OpenAI
+from pydantic import ValidationError
 from dotenv import load_dotenv
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
@@ -29,28 +31,36 @@ def extract_dl(file_path: str) -> DriverLicenseData:
     base64_image = file_to_base64_image(file_path, auto_rotate=True)
     client = OpenAI()
 
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": EXTRACTION_PROMPT},
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "image_url",
-                        "image_url": {"url": f"data:image/png;base64,{base64_image}"},
-                    },
-                    {"type": "text", "text": "Extract all fields from this driver license."},
-                ],
-            },
-        ],
-        response_format={"type": "json_object"},
-        max_tokens=300,
-    )
-
-    # TODO(auto-fix-ok): Add try-except for OpenAI API and JSON parsing errors
-    result = json.loads(response.choices[0].message.content)
-    return DriverLicenseData(file_path=file_path, **result)
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": EXTRACTION_PROMPT},
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "image_url",
+                            "image_url": {"url": f"data:image/png;base64,{base64_image}"},
+                        },
+                        {"type": "text", "text": "Extract all fields from this driver license."},
+                    ],
+                },
+            ],
+            response_format={"type": "json_object"},
+            max_tokens=300,
+        )
+        result = json.loads(response.choices[0].message.content)
+        return DriverLicenseData(file_path=file_path, **result)
+    except openai.OpenAIError as e:
+        print(f"OpenAI API call failed: {e}", file=sys.stderr)
+        raise
+    except json.JSONDecodeError as e:
+        print(f"Failed to parse OpenAI response as JSON: {e}", file=sys.stderr)
+        raise
+    except ValidationError as e:
+        print(f"OpenAI response failed Pydantic validation: {e}", file=sys.stderr)
+        raise
 
 
 if __name__ == "__main__":
