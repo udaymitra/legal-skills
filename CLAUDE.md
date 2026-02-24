@@ -181,6 +181,7 @@ Only after user approves the review.
 ### Small TODO Auto-Fix (exception to Step 3–4)
 
 For TODOs tagged as `# TODO(auto-fix-ok):` in code, a background agent may autonomously:
+0. **Pre-flight check:** Verify local `main` is in sync with remote (`git fetch origin && git diff main origin/main --quiet`). If out of sync, abort and ask the user to push first.
 1. Create a branch (`fix/<short-description>`) from `main`
 2. Implement the fix
 3. Run all automated checks (Step 1: pytest, ruff, mypy)
