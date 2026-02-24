@@ -1,38 +1,74 @@
 ---
 name: doc-classifier
-description: Classifies uploaded PDF or image documents as either a Driver License or Insurance document using GPT-4o-mini vision. Use when user uploads documents and says "classify", "what type of document is this", "sort these documents", or "identify document type".
+description: >
+  This skill classifies uploaded PDF or image documents as either a Driver License
+  or Insurance document using GPT-4o-mini vision. This skill should be used when
+  a user uploads documents and asks to "classify these documents", "what type of
+  document is this", "sort these documents", "identify document type", "is this a
+  driver license or insurance card", or any request to categorize legal documents
+  by type before extraction.
 ---
 
 # Document Classifier
 
-## Instructions
+## Workflow
 
 ### Step 1: Prepare the document
-Convert the input PDF or image to a base64-encoded image using `legal_skills.image_utils.file_to_base64_image()`.
+
+Convert the input PDF or image to a base64-encoded image:
+
+```python
+from legal_skills.image_utils import file_to_base64_image
+base64_img = file_to_base64_image("/path/to/document.pdf")
+```
+
+Supported formats: PDF, JPEG, PNG.
 
 ### Step 2: Classify with GPT-4o-mini vision
-Run: `python doc-classifier/scripts/classify.py <file_path>`
 
-Expected output: JSON with `file_path`, `document_type`, and `confidence`.
+Run the classifier script:
 
-### Step 3: Interpret results
-- `driver_license`: Route to dl-extractor skill
-- `insurance`: Route to insurance-extractor skill
-- `unknown`: Flag for manual review
+```bash
+python doc-classifier/scripts/classify.py <file_path>
+```
+
+Or import as a module:
+
+```python
+from classify import classify_document
+result = classify_document("/path/to/document.pdf")
+```
+
+Output: JSON with `file_path`, `document_type` (`driver_license` | `insurance` | `unknown`), and `confidence` (0.0–1.0).
+
+### Step 3: Route based on results
+
+- `driver_license` → Route to **dl-extractor** skill for data extraction
+- `insurance` → Route to **insurance-extractor** skill for data extraction
+- `unknown` → Flag for manual review; document is not a recognized type
 
 ## Examples
 
-Example 1: Classifying a driver license scan
-User says: "What type of document is this?"
-Action: Run classify.py on the uploaded file
-Result: `{"file_path": "/input/doc.pdf", "document_type": "driver_license", "confidence": 0.97}`
+**Classifying a driver license scan:**
+
+Input: `classify_document("/input/doc.pdf")`
+Output:
+```json
+{"file_path": "/input/doc.pdf", "document_type": "driver_license", "confidence": 0.97}
+```
+
+**Classifying an insurance card:**
+
+Input: `classify_document("/input/card.png")`
+Output:
+```json
+{"file_path": "/input/card.png", "document_type": "insurance", "confidence": 0.92}
+```
 
 ## Troubleshooting
 
-Error: "Unsupported file type"
-Cause: File is not PDF, JPEG, or PNG
-Solution: Convert to a supported format first
+**"Unsupported file type" error**
+The input file is not PDF, JPEG, or PNG. Convert to a supported format before classifying.
 
-Error: OpenAI API key not set
-Cause: OPENAI_API_KEY environment variable missing
-Solution: Set `export OPENAI_API_KEY=your-key` or add to `.env` file
+**"OpenAI API key not set" error**
+Set the `OPENAI_API_KEY` environment variable or add it to a `.env` file in the project root.

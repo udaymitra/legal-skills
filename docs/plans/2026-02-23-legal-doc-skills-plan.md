@@ -21,7 +21,7 @@
 
 - [x] **Task 1:** Project Setup — CLAUDE.md, deps, shared models, tests (5 passing)
 - [x] **Task 1b:** Git init, .gitignore, initial commit, push to GitHub
-- [ ] **Task 2:** Skill 1 — doc-classifier (SKILL.md, classify.py, tests)
+- [x] **Task 2:** Skill 1 — doc-classifier (SKILL.md, classify.py, 4 unit + 7 integration tests)
 - [ ] **Task 3:** Skill 2 — dl-extractor (SKILL.md, extract_dl.py, tests)
 - [ ] **Task 4:** Skill 3 — insurance-extractor (SKILL.md, extract_insurance.py, tests)
 - [ ] **Task 5:** Skill 4 — doc-validator (SKILL.md, validate.py, tests)

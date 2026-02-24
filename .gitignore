@@ -21,6 +21,9 @@ htmlcov/
 # Test data (personal documents)
 test_data/
 
+# Temp files
+tmp/
+
 # OS
 .DS_Store
 
