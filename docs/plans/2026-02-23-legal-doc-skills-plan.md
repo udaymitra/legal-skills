@@ -33,7 +33,7 @@
 - [x] **Task 4:** Skill 3 — insurance-extractor (SKILL.md, extract_insurance.py, 3 unit tests)
 - [x] **Task 5:** Skill 4 — doc-validator (SKILL.md, validate.py, tests)
 - [x] **Task 6:** Validate all skills, full test suite, package skills (packaging skipped — skills are local-only)
-- [ ] **Task 7:** Manual integration test with real docs
+- [x] **Task 7:** Manual integration test with real docs
 - [ ] **Task 8:** Build web UI integration test
 
 ---
