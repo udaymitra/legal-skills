@@ -17,6 +17,20 @@
 
 ---
 
+## Progress Tracker
+
+- [x] **Task 1:** Project Setup — CLAUDE.md, deps, shared models, tests (5 passing)
+- [x] **Task 1b:** Git init, .gitignore, initial commit, push to GitHub
+- [ ] **Task 2:** Skill 1 — doc-classifier (SKILL.md, classify.py, tests)
+- [ ] **Task 3:** Skill 2 — dl-extractor (SKILL.md, extract_dl.py, tests)
+- [ ] **Task 4:** Skill 3 — insurance-extractor (SKILL.md, extract_insurance.py, tests)
+- [ ] **Task 5:** Skill 4 — doc-validator (SKILL.md, validate.py, tests)
+- [ ] **Task 6:** Validate all skills, full test suite, package skills
+- [ ] **Task 7:** Manual integration test with real docs
+- [ ] **Task 8:** Build web UI integration test
+
+---
+
 ### Task 1: Project Setup — Dependencies and Shared Models
 
 **Files:**
@@ -1393,3 +1407,11 @@ Expected: Validation report showing matches/discrepancies
 
 **How to invoke:** Open a new Claude Code session and say:
 > "Build a web app that uses the skills in this project to process uploaded documents. See docs/plans/2026-02-23-legal-doc-skills-design.md for the full design."
+
+---
+
+## Unresolved Questions
+
+1. No unit test for `image_utils.py` yet — requires mocking pdf2image/PIL. Add in Task 6?
+2. Task 6 originally included git init steps — already done in Task 1b. Task 6 should focus on validation/packaging only.
+3. `.env.example` — create in Task 6 or earlier?
