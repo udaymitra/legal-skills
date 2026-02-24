@@ -27,5 +27,6 @@ tmp/
 # OS
 .DS_Store
 
-# Claude
-.claude/
+# Claude (ignore all except skills/)
+.claude/*
+!.claude/skills/
