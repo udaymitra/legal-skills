@@ -1,0 +1,14 @@
+name: legal_skills
+dependencies:
+  - python=3.11
+  - pip
+  - poppler
+  - pip:
+    - openai
+    - pydantic>=2.0
+    - pdf2image
+    - Pillow
+    - pytest
+    - python-dotenv
+    - ruff
+    - mypy
