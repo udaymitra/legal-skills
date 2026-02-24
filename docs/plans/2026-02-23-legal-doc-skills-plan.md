@@ -31,8 +31,8 @@
 - [x] **Task 2b:** Fix SKILL.md to follow Anthropic best practices (third-person desc, imperative body)
 - [x] **Task 3:** Skill 2 — dl-extractor (SKILL.md, extract_dl.py, 3 unit tests)
 - [x] **Task 4:** Skill 3 — insurance-extractor (SKILL.md, extract_insurance.py, 3 unit tests)
-- [ ] **Task 5:** Skill 4 — doc-validator (SKILL.md, validate.py, tests)
-- [ ] **Task 6:** Validate all skills, full test suite, package skills
+- [x] **Task 5:** Skill 4 — doc-validator (SKILL.md, validate.py, tests)
+- [x] **Task 6:** Validate all skills, full test suite, package skills (packaging skipped — skills are local-only)
 - [ ] **Task 7:** Manual integration test with real docs
 - [ ] **Task 8:** Build web UI integration test
 
@@ -1330,6 +1330,7 @@ Expected: All 4 skills pass validation (proper frontmatter, naming, description)
 
 Run: `cd /usr/local/code/legal_skills && python -m pytest tests/ -v`
 Expected: All tests PASS (5 model tests + 2 classify + 2 dl + 2 insurance + 8 validate = 19 tests)
+✅ Done — 38 tests passing (includes integration tests added after plan was written)
 
 **Step 6: Package all skills**
 
